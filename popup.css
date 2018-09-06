@@ -1,0 +1,22 @@
+.col-popup-exp {
+  height: 420px !important;
+}
+
+.col-popup-prom {
+  height: 328px !important;
+}
+
+.colc {
+  left: 0 !important;
+  top: 0 !important;
+  -webkit-transition: none !important;
+}
+
+.colc-main {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+.colc-main, .colc-fola, .colc-view, .colc-sug {
+  -webkit-transition: none !important;
+}
