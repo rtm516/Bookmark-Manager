@@ -7,6 +7,11 @@ Webstore version (doesn't work): https://chrome.google.com/webstore/detail/bookm
 
 Extension archive: https://crx.dam.io/ext/gmlllbghnfkpflemihljekbapjopfjik.html
 
+## Screenshots
+![Bookmark creation](https://raw.githubusercontent.com/rtm516/Bookmark-Manager/master/.github/README/1.jpg)
+
+![Bookmark management](https://raw.githubusercontent.com/username/projectname/branch/.github/README/2.jpg)
+
 ## Installation
 1. Click on the green 'Clone or download' button on the main repo page.
 2. Click 'Download ZIP' on the window that appeared.
