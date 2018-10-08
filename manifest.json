@@ -3,12 +3,6 @@
       "persistent": true,
       "scripts": [ "bootstrap.js", "background_compiled.js" ]
    },
-   "chrome_ui_overrides": {
-      "bookmarks_ui": {
-         "remove_bookmark_shortcut": true,
-         "remove_button": true
-      }
-   },
    "chrome_url_overrides": {
       "bookmarks": "bookmarks.html"
    },
@@ -22,7 +16,7 @@
    },
    "content_security_policy": "script-src 'self' https://*.google.com https://*.gstatic.com; object-src 'self'",
    "default_locale": "en",
-   "description": "Bookmark Manager by Google",
+   "description": "Google Bookmark Manager - recovered after Google 8/15/18 discontinuation.",
    "externally_connectable": {
       "matches": [ "*://*.google.com/*" ]
    },
@@ -48,6 +42,9 @@
    "permissions": [ "activeTab", "bookmarks", "bookmarkManagerPrivate", "chrome://favicon/", "identity", "identity.email", "management", "metricsPrivate", "notifications", "preferencesPrivate", "storage", "tabs", "*://*.google.com/*", {
       "fileSystem": [ "write" ]
    } ],
-   "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "2.2018.815.1147"
+   "update_url": "https://localhost",
+   "version": "2.2018.815.1147",
+   "version_name": "2.2018.815 restore",
+   "homepage_url": "https://github.com/rtm516/Bookmark-Manager"
+
 }
