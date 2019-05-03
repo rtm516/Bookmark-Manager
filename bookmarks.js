@@ -1,3 +1,12 @@
+const bookmarkWidth = 192;
+const bookmarkHeight = 224;
+const bookmarkSeperation = 14;
+const bookmarkXBorder = 36;
+const bookmarkYBorder = 31;
+const bookmarksSection = document.querySelector(".col-tiles-container");
+let bookmark_index = 0;
+let bookmarkXCount = 0;
+
 function betterTrim(str, trimChar) {
 	return str.replace(new RegExp("^[" + trimChar + "]+|[" + trimChar + "]+$", "g"), "");
 }
@@ -13,9 +22,9 @@ function buildBookmark(bookmark, folder, index) {
 		folderSection = `<span class="col-cv-collections-span">${folder}</span>`;
 	}
 
-	console.log(index);
+	let image = "images/tile-bg-" + (Math.round(Math.random() * 7) + 1) + ".jpg";
 
-	let offset = "left: " + (270 + ((192 + 14) * index)) + "px; top: 89px;";
+	let offset = "left: " + (234 + bookmarkXBorder + ((bookmarkWidth + bookmarkSeperation) * (index % bookmarkXCount))) + "px; top: " + (58 + bookmarkYBorder + ((bookmarkHeight + bookmarkSeperation) * Math.floor(index / bookmarkXCount))) + "px;";
 
 	let tmp = document.createElement("span");
 	tmp.innerHTML = `<a id="lc_${id}" tabindex="0" aria-label="${title}" role="listitem" href="${url}" class="col-cv" style="${offset} width: 192px; height: 224px;">
@@ -28,7 +37,7 @@ function buildBookmark(bookmark, folder, index) {
 						</div>
 						<div class="col-cv-content" style="left: 0px; top: 0px; width: 192px; height: 224px;">
 							<div class="col-cv-image-base">
-								<div class="col-cv-bg col-cv-bg-shown" style="background-image: url(&quot;images/tile-bg-3.jpg&quot;); left: 0px; top: 0px; width: 192px; height: 144px;">
+								<div class="col-cv-bg col-cv-bg-shown" style="background-image: url(&quot;${image}&quot;); left: 0px; top: 0px; width: 192px; height: 144px;">
 									<div class="col-cv-bg-title">${short_url}</div>
 									<div class="col-cv-bg-domain-icon"></div>
 								</div>
@@ -55,10 +64,10 @@ chrome.bookmarks.getTree(function(results) {
 			addFolder(result);
 		}
 	});
+
+	sizePage();
 });
 
-const bookmarksSection = document.querySelector(".col-tiles-container");
-let bookmark_index = 0;
 function createItem(item, folder) {
 	if (item.url) {
 		bookmarksSection.appendChild(buildBookmark(item, folder, bookmark_index));
@@ -88,6 +97,11 @@ function addFolder(folder) {
 	folderList.appendChild(folderItem);
 }
 
+function sizePage() {
+	let height = (58 + bookmarkYBorder + bookmarkYBorder - bookmarkSeperation + ((bookmarkHeight + bookmarkSeperation) * Math.ceil(bookmark_index / bookmarkXCount)));
+	document.querySelector(".col-curationv").style.height = height + "px";
+}
+
 function resize() {
 	let navBtnOffset = document.body.clientWidth - 410;
 	if (navBtnOffset < 532) {
@@ -95,6 +109,28 @@ function resize() {
 	}
 
 	document.querySelector(".col-tb-buttons").style.transform = "translate(" + navBtnOffset + "px, 0px)";
+
+	let availableWidth = (document.body.clientWidth - 234 - (bookmarkXBorder * 2));
+	bookmarkXCount = 0;
+	while (availableWidth > 0) {
+		availableWidth -= bookmarkWidth + bookmarkSeperation;
+		bookmarkXCount++;
+	}
+	bookmarkXCount--;
+
+	document.querySelector(".col-tlv").style.width = (bookmarkXCount * (bookmarkWidth + bookmarkSeperation) - bookmarkSeperation) + "px";
+
+	document.querySelectorAll(".col-tiles-container > a").forEach((element, index) => {
+		let offsetLeft = (234 + bookmarkXBorder + ((bookmarkWidth + bookmarkSeperation) * (index % bookmarkXCount))) + "px";
+		let offsetTop = (58 + bookmarkYBorder + ((bookmarkHeight + bookmarkSeperation) * Math.floor(index / bookmarkXCount))) + "px";
+		element.style.left = offsetLeft;
+		element.style.top = offsetTop;
+
+		console.log(index / bookmarkXCount, Math.floor(index / bookmarkXCount));		
+		console.log(index, offsetLeft, offsetTop);
+	});
+
+	sizePage();
 }
 window.addEventListener("resize", resize);
 resize();
