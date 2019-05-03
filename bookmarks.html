@@ -1,8 +1,280 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  </head>
-  <body>
-	New bookmarks page...
-  </body>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Bookmark Manager</title>
+	<link rel="stylesheet" type="text/css" href="collections.css">
+	<link rel="stylesheet" type="text/css" href="fonts.css">
+	<meta content="Bookmark Manager">
+	<style type="text/css">
+		.gstl_7777.sbib_a {
+			background: #fff;
+			box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+		}
+
+		.gstl_7777 .sbib_b {
+			box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			height: 100%;
+			overflow: hidden;
+			padding: 5px 9px 0
+		}
+
+		.gstl_7777 .sbib_c[dir=ltr] {
+			float: right
+		}
+
+		.gstl_7777 .sbib_c[dir=rtl] {
+			float: left
+		}
+
+		.gstl_7777 .sbib_d {
+			box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			height: 100%;
+			unicode-bidi: embed;
+			white-space: nowrap
+		}
+
+		.gstl_7777 .sbib_d[dir=ltr] {
+			float: left
+		}
+
+		.gstl_7777 .sbib_d[dir=rtl] {
+			float: right
+		}
+
+		.gstl_7777.sbib_a,
+		.gstl_7777 .sbib_c {
+			vertical-align: top
+		}
+
+		.gstl_7777.sbdd_a {
+			z-index: 989
+		}
+
+		.gstl_7777.sbdd_a[dir=ltr] .fl,
+		.gstl_7777.sbdd_a[dir=rtl] .fr {
+			float: left
+		}
+
+		.gstl_7777.sbdd_a[dir=ltr] .fr,
+		.gstl_7777.sbdd_a[dir=rtl] .fl {
+			float: right
+		}
+
+		.gstl_7777 .sbdd_b {
+			background: #fff;
+			border: 1px solid #ccc;
+			border-top-color: #d9d9d9;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+			-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+			cursor: default
+		}
+
+		.gstl_7777.sbdd_c {
+			border: 0;
+			display: block;
+			position: absolute;
+			top: 0;
+			z-index: 988
+		}
+
+		.gstl_7777 .sbsb_c[dir=ltr] .sbqs_a {
+			float: right
+		}
+
+		.gstl_7777 .sbsb_c[dir=rtl] .sbqs_a {
+			float: left
+		}
+
+		.gstl_7777 .sbqs_b {
+			visibility: hidden
+		}
+
+		.gstl_7777 .sbsb_d .sbqs_b {
+			visibility: visible
+		}
+
+		.gstl_7777 .sbsb_c[dir=ltr] .sbqs_b {
+			padding-left: 5px;
+		}
+
+		.gstl_7777 .sbsb_c[dir=rtl] .sbqs_b {
+			padding-right: 5px;
+		}
+
+		.gstl_7777 .sbqs_c {
+			word-wrap: break-word
+		}
+
+		.gstl_7777 .sbsb_a {
+			background: #fff
+		}
+
+		.gstl_7777 .sbsb_b {
+			list-style-type: none;
+			margin: 0;
+			padding: 0
+		}
+
+		.gstl_7777 .sbsb_c {
+			line-height: 22px;
+			overflow: hidden;
+			padding: 0 10px
+		}
+
+		.gstl_7777 .sbsb_d {
+			background: #eee
+		}
+
+		.gstl_7777 .sbsb_e {
+			height: 1px;
+			background-color: #e5e5e5
+		}
+
+		.gstl_7777 #sbsb_f {
+			font-size: 11px;
+			color: #36c;
+			text-decoration: none
+		}
+
+		.gstl_7777 #sbsb_f:hover {
+			font-size: 11px;
+			color: #36c;
+			text-decoration: underline
+		}
+
+		.gstl_7777 .sbsb_g {
+			text-align: center;
+			padding: 8px 0 7px;
+			position: relative
+		}
+
+		.gstl_7777 .sbsb_h {
+			font-size: 15px;
+			height: 28px;
+			margin: 0.2em;
+			-webkit-appearance: button
+		}
+
+		.gstl_7777 .sbsb_i {
+			font-size: 13px;
+			color: #36c;
+			text-decoration: none;
+			line-height: 100%
+		}
+
+		.gstl_7777 .sbsb_i:hover {
+			text-decoration: underline
+		}
+
+		.gstl_7777 .sbsb_j {
+			padding-top: 1px 0 2px 0;
+			font-size: 11px
+		}
+
+		.gstl_7777.sbdd_a[dir=ltr] .sbsb_j {
+			padding-right: 4px;
+			text-align: right
+		}
+
+		.gstl_7777.sbdd_a[dir=rtl] .sbsb_j {
+			padding-left: 4px;
+			text-align: left
+		}
+	</style>
+</head>
+
+<body style="background-color: #f1f1f1;">
+	<div class="col-ogb">
+		<div class="col-ogb-logo" id="colgblogo"></div>
+		<div class="col-ogb-sbox " id="colgbsbtc">
+			<div class="gstl_7777 sbib_a" style="height: 27px;">
+				<div class="sbib_b" id="sb_ifc7777" dir="ltr">
+					<div id="gs_lc7777" style="position: relative;"><input id="colgbqfq" aria-haspopup="false" role="combobox" aria-autocomplete="both" class="col-ogb-text" dir="ltr" autocomplete="off" spellcheck="false" aria-label="Search your bookmarks" placeholder="Search your bookmarks" style="border: none; padding: 0px; margin: 0px; height: auto; width: 100%; background: url(&quot;data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw%3D%3D&quot;) transparent; position: absolute; z-index: 6; left: 0px; outline: none;"><input class="col-ogb-text" disabled="" autocomplete="off" autocapitalize="off" aria-hidden="true" id="gs_htif7777" dir="ltr" style="border: none; padding: 0px; margin: 0px; height: auto; width: 100%; position: absolute; z-index: 1; background-color: transparent; -webkit-text-fill-color: silver; color: silver; transition: all 0.218s ease 0s; opacity: 1; left: 0px; text-align: left;"></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-ogb-sbtn" id="colgbqfb"></div>
+		<div class="gstl_7777 sbdd_a" style="display: none; min-width: 500px; top: 44px; left: 190px; position: absolute;">
+			<div class="fl"></div>
+			<div>
+				<div class="sbdd_b"></div>
+				<div></div>
+			</div>
+		</div>
+	</div>
+	<div class="col-zoom">&amp;nbsp;</div>
+
+
+	<div class="col-nav col-nav-shown">
+		<div class="col-nav-logo"></div>
+		<div class="col-nav-section col-nav-create">
+			<ul class="col-nav-list"></ul>
+			<div>
+				<div class="col-blue-btn col-modal-create-button col-btn" disabled="false" title="" value="undefined" role="button" tabindex="0" aria-label="Click to create a new bookmark or a new folder." style="user-select: none;">NEW</div>
+			</div>
+		</div>
+		<div class="col-nav-section col-nav-all">
+			<li tabindex="0" role="listitem" class="col-nav-item col-nav-header" id="col-nav-all-header">All items<div class="col-nav-expander"></div>
+			</li>
+			<ul class="col-nav-list"></ul>
+		</div>
+		<div class="col-nav-section col-nav-bookmarks-bar">
+			<li tabindex="-1" role="listitem" class="col-nav-item col-nav-header" id="col-nav-bookmarks-bar-header">Bookmarks Bar<div class="col-nav-expander"></div>
+			</li>
+			<ul class="col-nav-list"></ul>
+		</div>
+		<div class="col-nav-section col-nav-tags">
+			<li tabindex="-1" role="listitem" class="col-nav-item col-nav-header" id="col-nav-tags-header">Folders<div class="col-nav-expander col-nav-expander-closed"></div>
+			</li>
+			<ul class="col-nav-list"></ul>
+		</div>
+	</div>
+	<div class="col-tb-base" style="width: 100%;"><span class="col-tb-nav" tabindex="0" role="button" aria-label="Open navigation menu."></span><span class="col-tb-nav-title">All items</span>
+		<div class="col-tb-buttons" style="transform: translate(532px, 0px);">
+			<div class="col-tb-presentation">
+				<div class="goog-inline-block goog-flat-button col-tb-presentation-btn" role="button" tabindex="0" aria-label="List View" title="List View" style="user-select: none;">
+					<div class="col-tb-presentation-caption col-tb-presentation-tile"></div>
+				</div>
+			</div>
+			<div class="col-tb-settings">
+				<div class="goog-inline-block goog-flat-menu-button col-tb-settings-btn" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" aria-label="Settings" style="user-select: none;">
+					<div class="goog-inline-block goog-flat-menu-button-caption"></div>
+					<div class="goog-inline-block goog-flat-menu-button-dropdown" aria-hidden="true">&nbsp;</div>
+				</div>
+			</div>
+			<div class="col-red-btn col-tb-signin col-btn" disabled="false" title="" value="undefined" role="button" aria-hidden="true" style="user-select: none; display: none;">SIGN IN</div>
+		</div>
+	</div>
+	
+	<div class="col-curationv" style="width: 980px; height: 26518px;">
+		<div role="list" aria-label="All items" class="col-tiles-container">
+			
+		</div>
+		<div>
+			<div class="col-zd" style="display: none; transform: translateX(430px);">
+				<div class="col-zdc"></div>
+				<div class="col-zdi"></div>
+				<div class="col-zdtt" tabindex="0"></div>
+				<div class="col-zdbt"></div>
+			</div>
+		</div>
+		<div class="col-cv-edit-div">
+			<div class="col-cv-edit-content"></div>
+		</div>
+		<div class="col-bounding-box-pane" style="display: none;">
+			<div class="col-bounding-box"></div>
+		</div>
+		<div class="col-tlv" style="left: 270px; top: 77px; width: 710px;">
+			<div class="col-tlv-title" style=""><span class="col-tlv-title-desc" style="margin-left: 0px;"> </span></div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="bookmarks.js"></script>
+</body>
+
 </html>
