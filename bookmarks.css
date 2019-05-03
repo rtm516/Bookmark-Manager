@@ -1,0 +1,177 @@
+.gstl_7777.sbib_a {
+	background: #fff;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.gstl_7777 .sbib_b {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	height: 100%;
+	overflow: hidden;
+	padding: 5px 9px 0
+}
+
+.gstl_7777 .sbib_c[dir=ltr] {
+	float: right
+}
+
+.gstl_7777 .sbib_c[dir=rtl] {
+	float: left
+}
+
+.gstl_7777 .sbib_d {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	height: 100%;
+	unicode-bidi: embed;
+	white-space: nowrap
+}
+
+.gstl_7777 .sbib_d[dir=ltr] {
+	float: left
+}
+
+.gstl_7777 .sbib_d[dir=rtl] {
+	float: right
+}
+
+.gstl_7777.sbib_a,
+.gstl_7777 .sbib_c {
+	vertical-align: top
+}
+
+.gstl_7777.sbdd_a {
+	z-index: 989
+}
+
+.gstl_7777.sbdd_a[dir=ltr] .fl,
+.gstl_7777.sbdd_a[dir=rtl] .fr {
+	float: left
+}
+
+.gstl_7777.sbdd_a[dir=ltr] .fr,
+.gstl_7777.sbdd_a[dir=rtl] .fl {
+	float: right
+}
+
+.gstl_7777 .sbdd_b {
+	background: #fff;
+	border: 1px solid #ccc;
+	border-top-color: #d9d9d9;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	cursor: default
+}
+
+.gstl_7777.sbdd_c {
+	border: 0;
+	display: block;
+	position: absolute;
+	top: 0;
+	z-index: 988
+}
+
+.gstl_7777 .sbsb_c[dir=ltr] .sbqs_a {
+	float: right
+}
+
+.gstl_7777 .sbsb_c[dir=rtl] .sbqs_a {
+	float: left
+}
+
+.gstl_7777 .sbqs_b {
+	visibility: hidden
+}
+
+.gstl_7777 .sbsb_d .sbqs_b {
+	visibility: visible
+}
+
+.gstl_7777 .sbsb_c[dir=ltr] .sbqs_b {
+	padding-left: 5px;
+}
+
+.gstl_7777 .sbsb_c[dir=rtl] .sbqs_b {
+	padding-right: 5px;
+}
+
+.gstl_7777 .sbqs_c {
+	word-wrap: break-word
+}
+
+.gstl_7777 .sbsb_a {
+	background: #fff
+}
+
+.gstl_7777 .sbsb_b {
+	list-style-type: none;
+	margin: 0;
+	padding: 0
+}
+
+.gstl_7777 .sbsb_c {
+	line-height: 22px;
+	overflow: hidden;
+	padding: 0 10px
+}
+
+.gstl_7777 .sbsb_d {
+	background: #eee
+}
+
+.gstl_7777 .sbsb_e {
+	height: 1px;
+	background-color: #e5e5e5
+}
+
+.gstl_7777 #sbsb_f {
+	font-size: 11px;
+	color: #36c;
+	text-decoration: none
+}
+
+.gstl_7777 #sbsb_f:hover {
+	font-size: 11px;
+	color: #36c;
+	text-decoration: underline
+}
+
+.gstl_7777 .sbsb_g {
+	text-align: center;
+	padding: 8px 0 7px;
+	position: relative
+}
+
+.gstl_7777 .sbsb_h {
+	font-size: 15px;
+	height: 28px;
+	margin: 0.2em;
+	-webkit-appearance: button
+}
+
+.gstl_7777 .sbsb_i {
+	font-size: 13px;
+	color: #36c;
+	text-decoration: none;
+	line-height: 100%
+}
+
+.gstl_7777 .sbsb_i:hover {
+	text-decoration: underline
+}
+
+.gstl_7777 .sbsb_j {
+	padding-top: 1px 0 2px 0;
+	font-size: 11px
+}
+
+.gstl_7777.sbdd_a[dir=ltr] .sbsb_j {
+	padding-right: 4px;
+	text-align: right
+}
+
+.gstl_7777.sbdd_a[dir=rtl] .sbsb_j {
+	padding-left: 4px;
+	text-align: left
+}
