@@ -56,6 +56,34 @@ function buildBookmark(bookmark, folder, index) {
 	return tmp.firstChild;
 }
 
+function renderFolder(folderID) {
+	chrome.bookmarks.getSubTree(folderID, function(folder) {
+		bookmarksSection.innerHTML = "";
+
+		folder[0].children.forEach(result => {
+			createItem(result);
+		});
+
+		resize();
+	});
+}
+
+document.querySelector(".col-nav-all").addEventListener("click", function() {
+	document.querySelectorAll("div.col-nav-section .col-nav-item-selected").forEach(element => {
+		element.className = "col-nav-item";
+	});
+
+	renderFolder("2");
+});
+
+document.querySelector(".col-nav-bookmarks-bar").addEventListener("click", function() {
+	document.querySelectorAll("div.col-nav-section .col-nav-item-selected").forEach(element => {
+		element.className = "col-nav-item";
+	});
+
+	renderFolder("1");
+});
+
 chrome.bookmarks.getTree(function(results) {
 	results[0].children[1].children.forEach(result => {
 		createItem(result);
@@ -65,7 +93,7 @@ chrome.bookmarks.getTree(function(results) {
 		}
 	});
 
-	sizePage();
+	resize();
 });
 
 function createItem(item, folder) {
@@ -87,8 +115,19 @@ function addFolder(folder) {
 	let folderItem = document.createElement("li");
 	folderItem.setAttribute("tabindex", "-1");
 	folderItem.setAttribute("role", "listitem");
+	folderItem.setAttribute("data-id", folder.id);
 	folderItem.className = "col-nav-item";
 	folderItem.innerText = folder.title;
+
+	folderItem.addEventListener("click", function() {
+		document.querySelectorAll("div.col-nav-section .col-nav-item-selected").forEach(element => {
+			element.className = "col-nav-item";
+		});
+
+		folderItem.className = "col-nav-item col-nav-item-selected";
+
+		renderFolder(folder.id);
+	});
 
 	let folderExpand = document.createElement("div");
 	folderExpand.className = "col-nav-expander";
@@ -125,9 +164,6 @@ function resize() {
 		let offsetTop = (58 + bookmarkYBorder + ((bookmarkHeight + bookmarkSeperation) * Math.floor(index / bookmarkXCount))) + "px";
 		element.style.left = offsetLeft;
 		element.style.top = offsetTop;
-
-		console.log(index / bookmarkXCount, Math.floor(index / bookmarkXCount));		
-		console.log(index, offsetLeft, offsetTop);
 	});
 
 	sizePage();
