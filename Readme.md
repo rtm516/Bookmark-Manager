@@ -1,6 +1,32 @@
 # Bookmark Manager
 This is an almost complete rewrite of the extension 'Bookmark Manager' by Google. It is a work in progress but any test results or pull requests are greatly appreciated.
 
+## TODO
+### Bookmarks page
+- [x] Folder listing
+- [x] Bookmark listing
+- [ ] Bookmark placement
+- [ ] Folder selection
+- [ ] Editing bookmarks
+- [ ] Adding new folders
+- [ ] Adding new bookmarks
+- [ ] Animations
+- [ ] Settings
+- [ ] Moving bookmarks
+- [ ] Searching
+- [ ] Different listing style
+### Popup
+- [x] Getting page info
+- [x] Adding bookmarks
+- [ ] Get preview text
+- [ ] Allowing edit of the bookmarks
+- [ ] Allow folder managment
+- [ ] Images from page
+### Background
+- [x] Display the bookmark icon
+- [ ] Updating the icon when bookmarked
+- [ ] Manage bookmark images
+
 ## Installation
 1. Click on the green 'Clone or download' button on the main repo page.
 2. Click 'Download ZIP' on the window that appeared.
