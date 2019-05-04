@@ -5,8 +5,8 @@ This is an almost complete rewrite of the extension 'Bookmark Manager' by Google
 ### Bookmarks page
 - [x] Folder listing
 - [x] Bookmark listing
-- [ ] Bookmark placement
-- [ ] Folder selection
+- [x] Bookmark placement
+- [x] Folder selection
 - [ ] Editing bookmarks
 - [ ] Adding new folders
 - [ ] Adding new bookmarks
