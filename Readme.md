@@ -7,6 +7,8 @@ Webstore version (doesn't work): https://chrome.google.com/webstore/detail/bookm
 
 Extension archive: https://crx.dam.io/ext/gmlllbghnfkpflemihljekbapjopfjik.html
 
+A full rewrite is in development, feel free to check it out on the [rebuild](https://github.com/rtm516/Bookmark-Manager/tree/rebuild) branch, any pull requests adding features or fixing bugs are welcome and a TODO list is in the readme.
+
 ## Screenshots
 ![Bookmark creation](https://raw.githubusercontent.com/rtm516/Bookmark-Manager/master/.github/README/1.jpg)
 
