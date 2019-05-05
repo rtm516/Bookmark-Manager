@@ -26,6 +26,7 @@ This is an almost complete rewrite of the extension 'Bookmark Manager' by Google
 - [x] Display the bookmark icon
 - [ ] Updating the icon when bookmarked
 - [ ] Manage bookmark images
+- [ ] Dark mode setting
 
 ## Installation
 1. Click on the green 'Clone or download' button on the main repo page.
