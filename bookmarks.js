@@ -15,7 +15,10 @@ function buildBookmark(bookmark, folder, index) {
 	let id = bookmark.id;
 	let title = bookmark.title;
 	let url = bookmark.url;
-	let short_url = betterTrim(bookmark.url.split("://")[1].split("#")[0], "/");
+	let short_url = bookmark.url;
+	if (short_url.startsWith("chrome") || short_url.startsWith("http")) {
+		short_url = betterTrim(bookmark.url.split("://")[1].split("#")[0], "/");
+	}
 
 	let folderSection = "";
 	if (folder != undefined) {
