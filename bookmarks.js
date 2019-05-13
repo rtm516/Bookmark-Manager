@@ -139,26 +139,77 @@ function addFolder(folder) {
 	folderList.appendChild(folderItem);
 }
 
+function doSearch(searchQry) {
+	const searchList = document.querySelector("ul.sbsb_b");
+	searchList.parentElement.parentElement.parentElement.parentElement.style.display = "none";
+
+	if (searchQry !== undefined) {
+		document.querySelector("#colgbqfq").value = searchQry;
+	}
+
+	let searchStr = document.querySelector("#colgbqfq").value;
+	if (searchStr === "") {
+		renderFolder("2");
+	}else{
+		chrome.bookmarks.search(searchStr, function(searchResult) {
+			bookmarksSection.innerHTML = "";
+	
+			searchResult.forEach(result => {
+				createItem(result);
+			});
+	
+			resize();
+		});
+	}
+}
+
 document.querySelector("#colgbqfq").addEventListener("input", function() {
-	console.log(this.value);
+	let searchQry = this.value;
+	  
+	let searchReq = new XMLHttpRequest();
+	searchReq.addEventListener("load", function() {
+		let searchData = JSON.parse(this.responseText);
+		const searchList = document.querySelector("ul.sbsb_b");
+		searchList.parentElement.parentElement.parentElement.parentElement.style.display = "unset";
+		searchList.innerHTML = "";
+		searchData[1].forEach((result, id) => {
+			let text = result[0];
+
+			let el = document.createElement('span');
+			el.innerHTML = `<li role="presentation" class="sbsb_c col-ogb-text" dir="ltr" style="text-align: left;"><div role="option" id="sbse${id}"><div class="sbqs_a"></div><div class="sbqs_c">${text}</div></div></li>`;
+			el.firstChild.addEventListener("mouseover", function(e) {
+				e.path.forEach(elem => {
+					if (elem.tagName === "LI") {
+						elem.classList.add("sbsb_d");
+					}
+				});
+			});
+			el.firstChild.addEventListener("mouseout", function(e) {
+				e.path.forEach(elem => {
+					if (elem.tagName === "LI") {
+						elem.classList.remove("sbsb_d");
+					}
+				});
+			});
+
+			el.firstChild.addEventListener("click", function(e) {
+				e.path.forEach(elem => {
+					if (elem.className === "sbqs_c") {
+						doSearch(elem.innerText);
+					}
+				});
+			});
+
+			searchList.appendChild(el.firstChild);
+		});
+	});
+	searchReq.open("GET", "https://clients1.google.com/complete/search?client=stars&gs_rn=64&gs_ri=stars&cp=" + searchQry.length + "&q=" + encodeURI(searchQry) + "&xhr=t");
+	searchReq.send();
 });
 
-document.querySelector("#colgbqfq").addEventListener("keypress", function(event) {
-	if (event.keyCode === 13) {
-		let searchStr = document.querySelector("#colgbqfq").value;
-		if (searchStr === "") {
-			renderFolder("2");
-		}else{
-			chrome.bookmarks.search(searchStr, function(searchResult) {
-				bookmarksSection.innerHTML = "";
-		
-				searchResult.forEach(result => {
-					createItem(result);
-				});
-		
-				resize();
-			});
-		}
+document.querySelector("#colgbqfq").addEventListener("keypress", function(e) {
+	if (e.keyCode === 13) {
+		doSearch();
     }
 });
 
