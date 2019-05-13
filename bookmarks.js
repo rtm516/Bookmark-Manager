@@ -139,6 +139,38 @@ function addFolder(folder) {
 	folderList.appendChild(folderItem);
 }
 
+document.querySelector("#colgbqfq").addEventListener("input", function() {
+	console.log(this.value);
+});
+
+document.querySelector("#colgbqfq").addEventListener("keypress", function(event) {
+	if (event.keyCode === 13) {
+		let searchStr = document.querySelector("#colgbqfq").value;
+		if (searchStr === "") {
+			renderFolder("2");
+		}else{
+			chrome.bookmarks.search(searchStr, function(searchResult) {
+				bookmarksSection.innerHTML = "";
+		
+				searchResult.forEach(result => {
+					createItem(result);
+				});
+		
+				resize();
+			});
+		}
+    }
+});
+
+
+
+
+
+
+
+
+
+
 function sizePage() {
 	let height = (58 + bookmarkYBorder + bookmarkYBorder - bookmarkSeperation + ((bookmarkHeight + bookmarkSeperation) * Math.ceil(bookmark_index / bookmarkXCount)));
 	document.querySelector(".col-curationv").style.height = height + "px";
