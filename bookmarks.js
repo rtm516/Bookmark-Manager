@@ -3,6 +3,11 @@ const bookmarkHeight = 224;
 const bookmarkSeperation = 14;
 const bookmarkXBorder = 36;
 const bookmarkYBorder = 31;
+
+const animOffset = 150;
+const animTime = 100;
+const animTimeOffset = 100;
+
 const bookmarksSection = document.querySelector(".col-tiles-container");
 const bookmarkSelect = document.querySelector(".col-ab-bar");
 const bookmarkSelectCount = document.querySelector(".col-ab-count");
@@ -30,10 +35,10 @@ function buildBookmark(bookmark, folder, index) {
 
 	let image = "images/tile-bg-" + (Math.round(Math.random() * 7) + 1) + ".jpg";
 
-	let offset = "left: " + (234 + bookmarkXBorder + ((bookmarkWidth + bookmarkSeperation) * (index % bookmarkXCount))) + "px; top: " + (58 + bookmarkYBorder + ((bookmarkHeight + bookmarkSeperation) * Math.floor(index / bookmarkXCount))) + "px;";
+	let offsetPre = "left: " + (234 + bookmarkXBorder + ((bookmarkWidth + bookmarkSeperation) * (index % bookmarkXCount))) + "px; top: " + (58 + bookmarkYBorder + ((bookmarkHeight + bookmarkSeperation) * Math.floor(index / bookmarkXCount)) + animOffset) + "px;";
 
 	let tmp = document.createElement("span");
-	tmp.innerHTML = `<a id="lc_${id}" tabindex="0" aria-label="${title}" role="listitem" href="${url}" class="col-cv" style="${offset} width: 192px; height: 224px;">
+	tmp.innerHTML = `<a id="lc_${id}" tabindex="0" aria-label="${title}" role="listitem" href="${url}" class="col-cv" style="${offsetPre} width: 192px; height: 224px; opacity: 0;">
 						<div class="col-cv-overlay" style="user-select: none; left: 0px; top: 0px; width: 192px; height: 144px;"></div>
 						<div>
 							<div class="col-context-menu-button" role="button" aria-expanded="false" tabindex="-1" aria-haspopup="true" aria-label="More options" style="user-select: none; left: 168px; top: 152px; width: 24px; height: 24px;">
@@ -63,6 +68,8 @@ function buildBookmark(bookmark, folder, index) {
 }
 
 function renderFolder(folderID) {
+	bookmark_index = 0;
+
 	chrome.bookmarks.getSubTree(folderID, function(folder) {
 		bookmarksSection.innerHTML = "";
 
@@ -70,7 +77,7 @@ function renderFolder(folderID) {
 			createItem(result);
 		});
 
-		resize();
+		resize(true);
 	});
 }
 
@@ -99,7 +106,7 @@ chrome.bookmarks.getTree(function(results) {
 		}
 	});
 
-	resize();
+	resize(true);
 });
 
 function updateSelectDisplay() {
@@ -147,6 +154,14 @@ document.querySelector(".col-ab-delete:not(.col-ab-remove-trash)").addEventListe
 function createItem(item, folder) {
 	if (item.url) {
 		let newBookmark = buildBookmark(item, folder, bookmark_index);
+
+		let offsetPost = (58 + bookmarkYBorder + ((bookmarkHeight + bookmarkSeperation) * Math.floor(bookmark_index / bookmarkXCount))) + "px";
+		setTimeout(function() {
+			newBookmark.style.top = offsetPost;
+			newBookmark.style.opacity = "";
+			newBookmark.style.animation = "fadein 0.5s";
+		}, animTime + (animTimeOffset * (bookmark_index + 1)));
+
 		newBookmark.addEventListener("click", function() {
 			if (newBookmark.classList.contains("col-cv-selected")) {
 				newBookmark.classList.remove("col-cv-selected");
@@ -304,7 +319,7 @@ function sizePage() {
 	document.querySelector(".col-curationv").style.height = height + "px";
 }
 
-function resize() {
+function resize(dontMoveBookmarks = false) {
 	let navBtnOffset = document.body.clientWidth - 410;
 	if (navBtnOffset < 532) {
 		navBtnOffset = 532;
@@ -322,12 +337,14 @@ function resize() {
 
 	document.querySelector(".col-tlv").style.width = (bookmarkXCount * (bookmarkWidth + bookmarkSeperation) - bookmarkSeperation) + "px";
 
-	document.querySelectorAll(".col-tiles-container > a").forEach((element, index) => {
-		let offsetLeft = (234 + bookmarkXBorder + ((bookmarkWidth + bookmarkSeperation) * (index % bookmarkXCount))) + "px";
-		let offsetTop = (58 + bookmarkYBorder + ((bookmarkHeight + bookmarkSeperation) * Math.floor(index / bookmarkXCount))) + "px";
-		element.style.left = offsetLeft;
-		element.style.top = offsetTop;
-	});
+	if (!dontMoveBookmarks) {
+		document.querySelectorAll(".col-tiles-container > a").forEach((element, index) => {
+			let offsetLeft = (234 + bookmarkXBorder + ((bookmarkWidth + bookmarkSeperation) * (index % bookmarkXCount))) + "px";
+			let offsetTop = (58 + bookmarkYBorder + ((bookmarkHeight + bookmarkSeperation) * Math.floor(index / bookmarkXCount))) + "px";
+			element.style.left = offsetLeft;
+			element.style.top = offsetTop;
+		});
+	}
 
 	sizePage();
 }

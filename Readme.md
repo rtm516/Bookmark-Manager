@@ -11,7 +11,7 @@ This is an almost complete rewrite of the extension 'Bookmark Manager' by Google
 - [ ] Editing bookmarks
 - [ ] Adding new folders
 - [ ] Adding new bookmarks
-- [ ] Animations
+- [x] Animations
 - [ ] Settings
 - [ ] Moving bookmarks
 - [x] Searching
