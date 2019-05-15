@@ -6,14 +6,15 @@ This is an almost complete rewrite of the extension 'Bookmark Manager' by Google
 - [x] Folder listing
 - [x] Bookmark listing
 - [x] Bookmark placement
-- [x] Folder selection
+- [x] Folder navigation
+- [x] Bookmark selection
 - [ ] Editing bookmarks
 - [ ] Adding new folders
 - [ ] Adding new bookmarks
 - [ ] Animations
 - [ ] Settings
 - [ ] Moving bookmarks
-- [ ] Searching
+- [x] Searching
 - [ ] Different listing style
 ### Popup
 - [x] Getting page info
