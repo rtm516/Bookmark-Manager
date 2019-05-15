@@ -103,10 +103,6 @@ chrome.bookmarks.getTree(function(results) {
 });
 
 function updateSelectDisplay() {
-	//col-ab-bar
-	//col-ab-bar-visible
-	//bookmarkSelect
-
 	let selected = document.querySelectorAll(".col-cv-selected");
 	if (selected.length >= 2) {
 		if (!bookmarkSelect.classList.contains("col-ab-bar-visible")) {
@@ -118,6 +114,35 @@ function updateSelectDisplay() {
 		bookmarkSelect.classList.remove("col-ab-bar-visible");
 	}
 }
+
+document.querySelector(".col-ab-cancel").addEventListener("click", function() {
+	document.querySelectorAll(".col-cv-selected").forEach(element => {
+		element.classList.remove("col-cv-selected");
+		updateSelectDisplay();
+	});
+});
+
+document.querySelector(".col-ab-open").addEventListener("click", function() {
+	document.querySelectorAll(".col-cv-selected").forEach(element => {
+		chrome.tabs.create({url: element.href, active: false});
+
+		element.classList.remove("col-cv-selected");
+		updateSelectDisplay();
+	});
+});
+
+document.querySelector(".col-ab-delete:not(.col-ab-remove-trash)").addEventListener("click", function() {
+	document.querySelectorAll(".col-cv-selected").forEach(element => {
+		chrome.bookmarks.remove(element.id.replace("lc_", ""), function() {
+			element.remove();
+
+			resize();
+		});
+		
+		element.classList.remove("col-cv-selected");
+		updateSelectDisplay();
+	});
+});
 
 function createItem(item, folder) {
 	if (item.url) {
