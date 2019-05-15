@@ -4,6 +4,9 @@ const bookmarkSeperation = 14;
 const bookmarkXBorder = 36;
 const bookmarkYBorder = 31;
 const bookmarksSection = document.querySelector(".col-tiles-container");
+const bookmarkSelect = document.querySelector(".col-ab-bar");
+const bookmarkSelectCount = document.querySelector(".col-ab-count");
+
 let bookmark_index = 0;
 let bookmarkXCount = 0;
 
@@ -99,9 +102,58 @@ chrome.bookmarks.getTree(function(results) {
 	resize();
 });
 
+function updateSelectDisplay() {
+	//col-ab-bar
+	//col-ab-bar-visible
+	//bookmarkSelect
+
+	let selected = document.querySelectorAll(".col-cv-selected");
+	if (selected.length >= 2) {
+		if (!bookmarkSelect.classList.contains("col-ab-bar-visible")) {
+			bookmarkSelect.classList.add("col-ab-bar-visible");
+		}
+
+		bookmarkSelectCount.innerText = selected.length + " selected";
+	}else{
+		bookmarkSelect.classList.remove("col-ab-bar-visible");
+	}
+}
+
 function createItem(item, folder) {
 	if (item.url) {
-		bookmarksSection.appendChild(buildBookmark(item, folder, bookmark_index));
+		let newBookmark = buildBookmark(item, folder, bookmark_index);
+		newBookmark.addEventListener("click", function() {
+			if (newBookmark.classList.contains("col-cv-selected")) {
+				newBookmark.classList.remove("col-cv-selected");
+				updateSelectDisplay();
+				
+				event.preventDefault();
+				return;
+			}
+
+
+			let closestSelect = event.target.closest(".col-cv-select");
+			if (closestSelect && newBookmark.contains(closestSelect)) {
+				newBookmark.classList.add("col-cv-selected");
+				updateSelectDisplay();
+				
+				event.preventDefault();
+				return;
+			}
+
+			let closestMenu = event.target.closest(".col-context-menu-button");
+			if (closestMenu && newBookmark.contains(closestMenu)) {
+				console.log(2);
+				
+				event.preventDefault();
+				return;
+			}
+
+			window.open(item.url, "_blank");
+			event.preventDefault();
+		});
+
+		bookmarksSection.appendChild(newBookmark);
 		bookmark_index++;
 	}
 
