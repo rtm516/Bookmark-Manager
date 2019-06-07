@@ -38,7 +38,7 @@ function buildBookmark(bookmark, folder, index) {
 	let offsetPre = "left: " + (234 + bookmarkXBorder + ((bookmarkWidth + bookmarkSeperation) * (index % bookmarkXCount))) + "px; top: " + (58 + bookmarkYBorder + ((bookmarkHeight + bookmarkSeperation) * Math.floor(index / bookmarkXCount)) + animOffset) + "px;";
 
 	let tmp = document.createElement("span");
-	tmp.innerHTML = `<a id="lc_${id}" tabindex="0" aria-label="${title}" role="listitem" href="${url}" class="col-cv" style="${offsetPre} width: 192px; height: 224px; opacity: 0;">
+	tmp.innerHTML = `<a id="lc_${id}" tabindex="0" aria-label="${title}" data-date="${bookmark.dateAdded}" role="listitem" href="${url}" class="col-cv" style="${offsetPre} width: 192px; height: 224px; opacity: 0;">
 						<div class="col-cv-overlay" style="user-select: none; left: 0px; top: 0px; width: 192px; height: 144px;"></div>
 						<div>
 							<div class="col-context-menu-button" role="button" aria-expanded="false" tabindex="-1" aria-haspopup="true" aria-label="More options" style="user-select: none; left: 168px; top: 152px; width: 24px; height: 24px;">
@@ -231,6 +231,16 @@ function addFolder(folder) {
 	folderList.appendChild(folderItem);
 }
 
+function sortItems() {
+	let items = bookmarksSection.querySelectorAll("a");
+    let itemsArr = [].slice.call(items).sort(function (a, b) {
+        return a.dataset.date < b.dataset.date ? 1 : -1;
+    });
+    itemsArr.forEach(function (elem) {
+        bookmarksSection.appendChild(elem);
+    });
+}
+
 function doSearch(searchQry) {
 	const searchList = document.querySelector("ul.sbsb_b");
 	searchList.parentElement.parentElement.parentElement.parentElement.style.display = "none";
@@ -238,6 +248,8 @@ function doSearch(searchQry) {
 	if (searchQry !== undefined) {
 		document.querySelector("#colgbqfq").value = searchQry;
 	}
+	
+	bookmark_index = 0;
 
 	let searchStr = document.querySelector("#colgbqfq").value;
 	if (searchStr === "") {
